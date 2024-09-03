@@ -12,3 +12,7 @@
   justify-content: space-between;
   gap: 10px;
 }
+
+.filter-fieldset-container {
+  background-color: azure;
+}
