@@ -17,7 +17,8 @@ const {mutate} = useMutation({
     
 }) 
 const handleSubmit = (e)=>{
-    e.preventDefualt();
+    console.log(e)
+    e.preventDefault()
     console.log(user);
     mutate();
     
@@ -32,6 +33,7 @@ const handleSubmit = (e)=>{
        <div>
         <label>Username: </label>
        <input
+       id='username'
        type='name'
        onChange={handleChange} 
        />
@@ -39,6 +41,7 @@ const handleSubmit = (e)=>{
        <div>
         <label>Password: </label>
        <input
+       id='password'
        type="password"
        onChange={handleChange}
        className=''
