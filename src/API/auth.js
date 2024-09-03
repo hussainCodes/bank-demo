@@ -10,7 +10,7 @@ const registerUser = async (userInfo) => {
   for (const k in userInfo) {
     formData.append(k, userInfo[k]);
   }
-  const { data } = await instance.post("/mini-project/api/auth/register", {
+  const { data } = await instance.post("mini-project/api/auth/register", {
     formData,
   });
   return data;

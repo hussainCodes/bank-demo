@@ -18,30 +18,43 @@ const {mutate} = useMutation({
 }) 
 const handleSubmit = (e)=>{
     e.preventDefualt();
+    console.log(user);
     mutate();
+    
 }
 
   return (
-    <div className='bg-blue-300 justify-center flex'>
+    <div className='bg-blue-300 justify-center flex items-center h-[100vh]'>
+        <div className='border p-5 rounded-xl bg-white shadow-2xl'>
         <form onSubmit={handleSubmit}>
        <div className='flex flex-col gap-2 '>
        <h1 >Register</h1> 
        <div>
-        <label>Username</label>
+        <label>Username: </label>
        <input
        type='name'
        onChange={handleChange} 
        />
        </div>
        <div>
-        <label>Password</label>
+        <label>Password: </label>
        <input
        type="password"
        onChange={handleChange}
+       className=''
        />
        </div>
+       <input
+       type="file" accept="image/*" />
+       <button
+       type='submit'
+       className=''>
+        Register
+       </button>
        </div>
        </form>
+       </div>
+       
     </div>
   )
 }
