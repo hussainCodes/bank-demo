@@ -1,12 +1,47 @@
-import React from 'react'
-
+import React,{ useState } from 'react'
+import {useMutation} from "@tanstack/react-query"
+import { registerUser } from '../API/auth'
 const Register = () => {
+const [user, setUser] = useState({});
+const handleChange = (e)=>{
+    if(e.target.name ==="image"){
+        setUser({...user , [e.target.name]:e.target.files[0]})
+    }else{
+        setUser({...user, [e.target.name]:e.target.value})
+    }
+}
+const {mutate} = useMutation({
+    mutationKey:["register"],
+    mutationFn:()=>registerUser(user)
+
+    
+}) 
+const handleSubmit = (e)=>{
+    e.preventDefualt();
+    mutate();
+}
 
   return (
-    <div className='bg-blue-200 justify-center flex'>
-        
-       <h1 ></h1> 
-
+    <div className='bg-blue-300 justify-center flex'>
+        <form onSubmit={handleSubmit}>
+       <div className='flex flex-col gap-2 '>
+       <h1 >Register</h1> 
+       <div>
+        <label>Username</label>
+       <input
+       type='name'
+       onChange={handleChange} 
+       />
+       </div>
+       <div>
+        <label>Password</label>
+       <input
+       type="password"
+       onChange={handleChange}
+       />
+       </div>
+       </div>
+       </form>
     </div>
   )
 }
