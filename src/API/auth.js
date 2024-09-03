@@ -5,11 +5,13 @@ const getUserById = async (userId) => {
   return data;
 };
 
-const registerUser = async (userName, image, password) => {
+const registerUser = async (userInfo) => {
+  const formData = new FormData();
+  for (const k in userInfo) {
+    formData.append(k, userInfo[k]);
+  }
   const { data } = await instance.post("/mini-project/api/auth/register", {
-    username: userName,
-    image: image,
-    password: password,
+    formData,
   });
   return data;
 };
