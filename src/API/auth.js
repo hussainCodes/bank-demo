@@ -17,7 +17,6 @@ const registerUser = async (userName, image, password) => {
 const loginUser = async (userName, password) => {
   const { data } = await instance.post("/mini-project/api/auth/login", {
     username: userName,
-    image: image,
     password: password,
   });
   return data;
