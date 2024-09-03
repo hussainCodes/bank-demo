@@ -1,0 +1,14 @@
+.profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+  justify-content: space-between;
+  gap: 10px;
+}
