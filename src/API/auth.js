@@ -21,11 +21,11 @@ const registerUser = async (userInfo) => {
   return data;
 };
 
-const loginUser = async (userName, password) => {
-  const { data } = await instance.post("/mini-project/api/auth/login", {
-    username: userName,
-    password: password,
-  });
+const loginUser = async (userInfo) => {
+  const { data } = await instance.post(
+    "/mini-project/api/auth/login",
+    userInfo
+  );
   return data;
 };
 
