@@ -7,12 +7,11 @@ const getUserById = async (userId) => {
 
 const registerUser = async (userInfo) => {
   const formData = new FormData();
-  for (const k in userInfo) {
-    formData.append(k, userInfo[k]);
-  }
-  const { data } = await instance.post("mini-project/api/auth/register", {
+  for (const k in userInfo)  formData.append(k, userInfo[k]);
+  console.log(formData)
+  const { data } = await instance.post("/mini-project/api/auth/register", 
     formData,
-  });
+  );
   return data;
 };
 
