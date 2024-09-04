@@ -33,4 +33,9 @@ const loginUser = async (userInfo) => {
   return data;
 };
 
-export { getUserById, registerUser, loginUser, getAllUsers };
+const getMyProfile = async () => {
+  const { data } = await instance.get("/mini-project/api/auth/me");
+  return data;
+};
+
+export { getUserById, registerUser, loginUser, getAllUsers, getMyProfile };
