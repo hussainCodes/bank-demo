@@ -1,4 +1,6 @@
+import { defaultShouldDehydrateQuery } from "@tanstack/react-query";
 import instance from ".";
+import { storeToken } from "./storage";
 
 const getUserById = async (userId) => {
   const { data } = await instance.get(`/mini-project/api/auth/user/${userId}`);
@@ -18,6 +20,7 @@ const registerUser = async (userInfo) => {
     "/mini-project/api/auth/register",
     formData
   );
+  storeToken(data.token);
   return data;
 };
 
@@ -26,6 +29,7 @@ const loginUser = async (userInfo) => {
     "/mini-project/api/auth/login",
     userInfo
   );
+  storeToken(data.token);
   return data;
 };
 
