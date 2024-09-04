@@ -31,6 +31,7 @@ const Login = () => {
            id='username'
            type='name'
            name='username'
+           className=''
            onChange={handleChange} 
            required
            />
@@ -57,7 +58,7 @@ const Login = () => {
            </div>
            
         </div>
-      )
-}
+      );
+};
 
 export default Login
