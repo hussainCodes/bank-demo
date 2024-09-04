@@ -4,6 +4,7 @@ import { registerUser } from "../API/auth";
 const Register = () => {
   const [user, setUser] = useState({});
   const handleChange = (e) => {
+    console.log(e.target.name);
     if (e.target.name === "image") {
       setUser({ ...user, [e.target.name]: e.target.files[0] });
     } else {
@@ -11,11 +12,10 @@ const Register = () => {
     }
   };
   const { mutate } = useMutation({
-    mutationKey: ["register"],
+    mutationKey: ["registerUser"],
     mutationFn: () => registerUser(user),
   });
   const handleSubmit = (e) => {
-    console.log(e);
     e.preventDefault();
     console.log(user);
     mutate();
@@ -29,18 +29,32 @@ const Register = () => {
             <h1>Register</h1>
             <div>
               <label>Username: </label>
-              <input id="username" type="name" onChange={handleChange} />
+              <input
+                id="username"
+                type="name"
+                name="username"
+                onChange={handleChange}
+                required
+              />
             </div>
             <div>
               <label>Password: </label>
               <input
                 id="password"
                 type="password"
+                name="password"
                 onChange={handleChange}
                 className=""
+                required
               />
             </div>
-            <input type="file" accept="image/*" />
+            <input
+              type="file"
+              id="image"
+              name="image"
+              onChange={handleChange}
+              required
+            />
             <button type="submit" className="">
               Register
             </button>

@@ -4,20 +4,16 @@ import { loginUser } from '../API/auth';
 const Login = () => {
     const [user, setUser] = useState({});
     const handleChange = (e)=>{
-        if(e.target.name ==="image"){
-            setUser({...user , [e.target.name]:e.target.files[0]})
-        }else{
-            setUser({...user, [e.target.name]:e.target.value})
-        }
+       setUser((prev)=>({...prev,[e.target.name]:e.target.value}));
     }
     const {mutate} = useMutation({
-        mutationKey:["login"],
+        mutationKey:["loginUser"],
         mutationFn:()=>loginUser(user)
     
         
     }) 
     const handleSubmit = (e)=>{
-        e.preventDefualt();
+        e.preventDefault()
         mutate();
         console.log(user);
         
@@ -28,20 +24,27 @@ const Login = () => {
             <div className='border p-5 rounded-xl bg-white shadow-2xl'>
             <form onSubmit={handleSubmit}>
            <div className='flex flex-col gap-2 '>
-           <h1 >Register</h1> 
+           <h1 >Login</h1> 
            <div>
             <label>Username: </label>
            <input
+           id='username'
            type='name'
+           name='username'
+           className=''
            onChange={handleChange} 
+           required
            />
            </div>
            <div>
             <label>Password: </label>
            <input
-           type="password"
+            id='password'
+            type="password"
+            name="password"
            onChange={handleChange}
            className=''
+           required
            />
            </div>
          
@@ -55,7 +58,7 @@ const Login = () => {
            </div>
            
         </div>
-      )
-}
+      );
+};
 
 export default Login
