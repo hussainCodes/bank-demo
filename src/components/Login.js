@@ -2,20 +2,20 @@ import React,{useState} from 'react'
 import { useMutation } from '@tanstack/react-query';
 import { loginUser } from '../API/auth';
 const Login = () => {
-    const [user, setUser] = useState({});
+    const [userInfo, setUserInfo] = useState({});
     const handleChange = (e)=>{
-       setUser((prev)=>({...prev,[e.target.name]:e.target.value}));
+       setUserInfo((prev)=>({...prev,[e.target.name]:e.target.value}));
     }
     const {mutate} = useMutation({
         mutationKey:["loginUser"],
-        mutationFn:()=>loginUser(user)
+        mutationFn:()=>loginUser(userInfo)
     
         
     }) 
     const handleSubmit = (e)=>{
         e.preventDefault()
         mutate();
-        console.log(user);
+        console.log(userInfo);
         
     }
     

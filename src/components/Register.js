@@ -2,22 +2,22 @@ import React, { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { registerUser } from "../API/auth";
 const Register = () => {
-  const [user, setUser] = useState({});
+  const [userInfo, setUserInfo] = useState({});
   const handleChange = (e) => {
     console.log(e.target.name);
     if (e.target.name === "image") {
-      setUser({ ...user, [e.target.name]: e.target.files[0] });
+      setUserInfo({ ...userInfo, [e.target.name]: e.target.files[0] });
     } else {
-      setUser({ ...user, [e.target.name]: e.target.value });
+      setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
     }
   };
   const { mutate } = useMutation({
     mutationKey: ["registerUser"],
-    mutationFn: () => registerUser(user),
+    mutationFn: () => registerUser(userInfo),
   });
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
+    console.log(userInfo);
     mutate();
   };
 
