@@ -1,17 +1,23 @@
 import React from 'react'
 import { getAllUsers } from '../API/auth'
 import { useQuery } from '@tanstack/react-query'
+
 const Users = () => {
     const {data: users} = useQuery({
         queryKey:["users"],
         queryFn: getAllUsers,
     })
+    console.log(users)
   return (
-    <div className='flex justify-center'>
-        <h1>Users</h1>
-        <div>
+    <div  className= ''>
+    <div className='flex justify-center items-center'>
+    <h1>Users</h1>
+    </div>
+    <div className='flex justify-center items-center'>
+        
+        <div className='bg-gray-600 w-80 h-80 '>
             {users?.map((user)=>{
-                <div
+            return    <div
                 key={user.id}
                 className=''>
                     <img
@@ -25,8 +31,9 @@ const Users = () => {
                     </div>
                 </div>
 
-            })}
+})}
         </div>
+    </div>
     </div>
   )
 }
