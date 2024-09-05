@@ -8,6 +8,11 @@ import UserContext from "./Context/UserContext";
 
 function App() {
   const [user, setUser] = useState(false);
+
+  useEffect(() => {
+    setUser(checkToken());
+  }, []);
+
   return (
     <UserContext.Provider value={[user, setUser]}>
       <div>
