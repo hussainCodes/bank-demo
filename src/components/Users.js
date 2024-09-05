@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { getAllUsers } from '../API/auth'
 import { useQuery } from '@tanstack/react-query'
-
+import TransferModal from './TransferModal'
 const Users = () => {
+    const [showModal, setShowModal] = useState(false)
     const {data: users} = useQuery({
         queryKey:["users"],
         queryFn: getAllUsers,
     })
     console.log(users)
   return (
+    <>
     <div  className= ''>
-    <div className='flex-col justify-center '>
+    <div className='flex-row items-center justify-center '>
     <h1>Users</h1>
     </div>
     <div className='flex justify-center '>
@@ -35,7 +37,8 @@ const Users = () => {
                         </h3>
                         
                         <button
-                        className='bg-green-500 p-4 rounded-2xl'>Transfer</button>
+                        className='bg-green-500 p-4 rounded-2xl hover:bg-green-600 hover:scale-110 active:bg-green-700 '
+                        onClick={()=>setShowModal(true)}>Transfer</button>
                         
                 </div>
 
@@ -43,6 +46,8 @@ const Users = () => {
         </div>
     </div>
     </div>
+    <TransferModal show={showModal} setShowModal={setShowModal} />
+    </>
   )
 }
 

@@ -1,6 +1,7 @@
 import { defaultShouldDehydrateQuery } from "@tanstack/react-query";
 import instance from ".";
 import { storeToken } from "./storage";
+import { Await } from "react-router-dom";
 
 const getUserById = async (userId) => {
   const { data } = await instance.get(`/mini-project/api/auth/user/${userId}`);
@@ -37,8 +38,13 @@ const getMyProfile = async () => {
   const { data } = await instance.get("/mini-project/api/auth/me");
   return data;
 };
-const transfer = async ()=>{
-    
+const transfer = async (amount,username)=>{
+    const { data } = await instance.put(`/mini-project/api/transactions/transfer/${username}`,amount)
+    return data
 }
-
-export { getUserById, registerUser, loginUser, getAllUsers, getMyProfile };
+ 
+const getMyTransactions = async ()=>{
+    const {data} = await instance.get("/mini-project/api/transactions/my")
+    return data;
+}
+export { getUserById, registerUser, loginUser, getAllUsers, getMyProfile,transfer , getMyTransactions};
