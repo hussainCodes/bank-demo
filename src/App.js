@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
 import UserContext from "./Context/UserContext";
+import { useEffect } from "react";
+import { checkToken } from "./API/storage";
 
 function App() {
   const [user, setUser] = useState(false);
