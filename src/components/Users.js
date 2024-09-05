@@ -10,25 +10,33 @@ const Users = () => {
     console.log(users)
   return (
     <div  className= ''>
-    <div className='flex justify-center items-center'>
+    <div className='flex-col justify-center '>
     <h1>Users</h1>
     </div>
-    <div className='flex justify-center items-center'>
+    <div className='flex justify-center '>
         
-        <div className='bg-gray-600 w-80 h-80 '>
+        <div>
             {users?.map((user)=>{
             return    <div
                 key={user.id}
-                className=''>
+                className='flex  justify-around items-center rounded-3xl   shadow-2xl w-[100vh] h-24 m-5'>
                     <img
-                    src={user.image}
+                    src={"https://react-bank-project.eapi.joincoded.com/"+user.image}
                     alt='user'
-                    className=''/>
-                    <div>
-                        <h3 className=''>
-                            {user.name}
+                    className='self-center	h-20 w-20 rounded-full justify-start items-center'/>
+                    
+                        <h3 className=' w-fit h-fit'>
+                            {user.username}
+                            
                         </h3>
-                    </div>
+                        <h3 className=' w-fit h-fit'>
+                           Balance: {user.balance}
+                            
+                        </h3>
+                        
+                        <button
+                        className='bg-green-500 p-4 rounded-2xl'>Transfer</button>
+                        
                 </div>
 
 })}
