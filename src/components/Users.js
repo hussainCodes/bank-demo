@@ -5,7 +5,7 @@ import UserItem from './UserItem'
 import TransferModal from './TransferModal'
 const Users = () => {
     const [showModal, setShowModal] = useState(false)
-    
+    const [username, setUsername] = useState("")
   return (
     <>
     <div  className= ''>
@@ -15,8 +15,8 @@ const Users = () => {
     <div className='flex justify-center '>
         
         <div>
-            <UserItem setShowModal={setShowModal}/>
-            <TransferModal showModal={showModal} setShowModal={setShowModal} />
+            <UserItem setShowModal={setShowModal} setUsername= {setUsername} />
+            <TransferModal showModal={showModal} setShowModal={setShowModal} username={username}/>
 
            
         </div>

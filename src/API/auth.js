@@ -39,7 +39,12 @@ const getMyProfile = async () => {
   return data;
 };
 const transfer = async (amount,username)=>{
-    const { data } = await instance.put(`/mini-project/api/transactions/transfer/${username}`,amount)
+    const { data } = await instance.put(`/mini-project/api/transactions/transfer/${username}`,
+        {
+        amount:amount,
+        username:username,
+        }
+    )
     return data
 }
  
