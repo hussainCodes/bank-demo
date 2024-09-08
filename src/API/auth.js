@@ -62,6 +62,16 @@ const deposit = async (amount) => {
   );
   return data;
 };
+
+const withdraw = async (amount) => {
+  const { data } = await instance.put(
+    "/mini-project/api/transactions/withdraw",
+    {
+      amount: amount,
+    }
+  );
+  return data;
+};
 export {
   getUserById,
   registerUser,
@@ -71,4 +81,5 @@ export {
   transfer,
   getMyTransactions,
   deposit,
+  withdraw,
 };
