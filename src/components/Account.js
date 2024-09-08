@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { deposit, getMyProfile } from "../API/auth";
-import { QueryClient } from "@tanstack/react-query";
+import { deposit, getMyProfile, withdraw } from "../API/auth";
+
 const Account = () => {
   const [transactionType, setTransactionType] = useState("deposit");
   const [transactionAmount, setTransactionAmount] = useState("0");
@@ -12,36 +12,48 @@ const Account = () => {
     queryFn: () => getMyProfile(),
   });
 
-  const { mutate } = useMutation({
+  const [amount, setAmount] = useState(user.balance);
+
+  const { mutate: depositAmount } = useMutation({
     mutationKey: ["depositAmount"],
     mutationFn: () => deposit(transactionAmount),
     onSuccess: () => {
-      alert("Transaction is successful");
       queryClient.invalidateQueries();
+      alert("Transaction is successful");
     },
     onError: () => {
       alert("error");
     },
   });
 
-  // const handleTransaction = () => {
-  //   switch (transactionType){
-  //     case "deposit":
+  const { mutate: withdrawAmount } = useMutation({
+    mutationKey: ["depositAmount"],
+    mutationFn: () => withdraw(transactionAmount),
+    onSuccess: () => {
+      queryClient.invalidateQueries();
+      alert("Transaction is successful");
+    },
+    onError: () => {
+      alert("error");
+    },
+  });
 
-  //     break;
-  //     case "withdraw":
-
-  //     break;
-  //   }
-  // }
+  const handleTransaction = () => {
+    switch (transactionType) {
+      case "deposit":
+        depositAmount();
+        console.log("userAfterDeposit", user);
+        break;
+      case "withdraw":
+        withdrawAmount();
+        console.log("userAfterWithdraw", user);
+        break;
+    }
+  };
 
   const handleAmountInput = (e) => {
     setTransactionAmount(e.target.value);
   };
-
-  // console.log(user);
-  // console.log(user.balance);
-  // console.log(user.username);
 
   return (
     <>
@@ -90,7 +102,7 @@ const Account = () => {
                 <button
                   className="w-full rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2"
                   type="button"
-                  onClick={mutate}
+                  onClick={handleTransaction}
                 >
                   Submit
                 </button>
