@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { transfer } from "../API/auth";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-const TransferModal = ({ showModal, setShowModal }) => {
+const TransferModal = ({ showModal, setShowModal,username }) => {
   const [amount, setAmount] = useState(0);
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationKey: ["transfer"],
-    mutationFn: () => transfer(amount),
+    mutationFn: () => transfer(username,amount),
     onSuccess: () => {
       setShowModal(false);
       queryClient.invalidateQueries(["getAllUsers"]);

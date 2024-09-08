@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { getAllUsers } from "../API/auth";
 import TransferModal from "./TransferModal";
-const UserItem = ({setShowModal}) => {
+const UserItem = ({setShowModal,setUsername}) => {
 //   const [showModal, setShowModal] = useState(true);
   const { data: users } = useQuery({
     queryKey: ["users"],
@@ -31,6 +31,7 @@ const UserItem = ({setShowModal}) => {
               className="bg-green-500 p-4 rounded-2xl hover:bg-green-600 hover:scale-110 active:bg-green-700 active:scale-95"
               onClick={() => {
                 setShowModal(true);
+                setUsername(user.username);
               }}
             >
               Transfer
