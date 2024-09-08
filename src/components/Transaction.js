@@ -7,7 +7,7 @@ const Transaction = ({ transaction }) => {
   if (transaction.type == "withdraw") {
     return (
       <>
-        <div className="flex justify-between p-5 items-center border border-r-2 w-96 rounded-xl h-14 border-red-500">
+        <div className="flex justify-between p-5 items-center border border-r-2 border-l-2 w-96 rounded-xl h-14 border-red-500">
           <div className="flex">
             <div>{plusOrMinus}</div>
             <div>{transaction.amount}</div>
@@ -21,7 +21,7 @@ const Transaction = ({ transaction }) => {
 
   return (
     <>
-      <div className="flex justify-between p-5 items-center border w-96 rounded-xl h-14 border-green-500">
+      <div className="flex justify-between p-5 items-center border border-r-2 border-l-2 w-96 rounded-xl h-14 border-green-500">
         <div className="flex">
           <div>{plusOrMinus}</div>
           <div>{transaction.amount}</div>
