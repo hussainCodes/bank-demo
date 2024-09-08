@@ -38,7 +38,8 @@ const Users = () => {
                         
                         <button
                         className='bg-green-500 p-4 rounded-2xl hover:bg-green-600 hover:scale-110 active:bg-green-700 active:scale-95'
-                        onClick={()=>setShowModal(true)}>Transfer</button>
+                        onClick={()=>{
+                            setShowModal(true)}}>Transfer</button>
                         
                 </div>
 

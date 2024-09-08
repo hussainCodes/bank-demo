@@ -15,12 +15,14 @@ const {mutate} = useMutation({
         alert("Error!")
     }
 })
+if (!showModal) return "";
   return (
     <div className='flex-row bg-slate-700 h-28 w-28 shadow-2xl self-center justify-center items-center'>
         <input />
         <button onClick={mutate}>
             Transfer
         </button>
+        <button >close</button>
     </div>
   )
 }
