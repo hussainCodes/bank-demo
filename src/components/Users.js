@@ -6,6 +6,7 @@ import TransferModal from './TransferModal'
 const Users = () => {
     const [showModal, setShowModal] = useState(false)
     const [username, setUsername] = useState("")
+    console.log(username)
   return (
     <>
     <div  className= ''>
