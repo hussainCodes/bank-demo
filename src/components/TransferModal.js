@@ -6,7 +6,7 @@ const TransferModal = ({ showModal, setShowModal,username }) => {
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationKey: ["transfer"],
-    mutationFn: () => transfer(username,amount),
+    mutationFn: () => transfer(amount,username),
     onSuccess: () => {
       setShowModal(false);
       queryClient.invalidateQueries(["getAllUsers"]);
@@ -15,6 +15,10 @@ const TransferModal = ({ showModal, setShowModal,username }) => {
       alert("Error!");
     },
   });
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    mutate()
+  }
   if (!showModal) return null;
   return (
     // <div className="flex-row bg-slate-700 h-28 w-28 shadow-2xl self-center justify-center items-center">
@@ -30,7 +34,7 @@ const TransferModal = ({ showModal, setShowModal,username }) => {
     <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-10">
       <div className="bg-gray-800 rounded-md shadow-md w-full max-w-md p-6 overflow-scroll max-h-[70%]">
         <h2 className="text-3xl text-white font-semibold mb-6">Transfer Amount</h2>
-        <form onSubmit={mutate}>
+        <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
               htmlFor="title"
@@ -55,7 +59,7 @@ const TransferModal = ({ showModal, setShowModal,username }) => {
               Transfer
             </button>
             <button
-              type="button"
+              type="submit"
               onClick={() => setShowModal(false)}
               className="ml-2 px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
             >
