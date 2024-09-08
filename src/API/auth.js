@@ -38,13 +38,35 @@ const getMyProfile = async () => {
   const { data } = await instance.get("/mini-project/api/auth/me");
   return data;
 };
-const transfer = async (amount,username)=>{
-    const { data } = await instance.put(`/mini-project/api/transactions/transfer/${username}`,amount)
-    return data
-}
- 
-const getMyTransactions = async ()=>{
-    const {data} = await instance.get("/mini-project/api/transactions/my")
-    return data;
-}
-export { getUserById, registerUser, loginUser, getAllUsers, getMyProfile,transfer , getMyTransactions};
+const transfer = async (amount, username) => {
+  const { data } = await instance.put(
+    `/mini-project/api/transactions/transfer/${username}`,
+    amount
+  );
+  return data;
+};
+
+const getMyTransactions = async () => {
+  const { data } = await instance.get("/mini-project/api/transactions/my");
+  return data;
+};
+
+const deposit = async (amount) => {
+  const { data } = await instance.put(
+    "/mini-project/api/transactions/deposit",
+    {
+      amount: amount,
+    }
+  );
+  return data;
+};
+export {
+  getUserById,
+  registerUser,
+  loginUser,
+  getAllUsers,
+  getMyProfile,
+  transfer,
+  getMyTransactions,
+  deposit,
+};
