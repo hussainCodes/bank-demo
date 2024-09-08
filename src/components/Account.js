@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { deposit, getMyProfile } from "../API/auth";
+import { QueryClient } from "@tanstack/react-query";
 const Account = () => {
   const [transactionType, setTransactionType] = useState("deposit");
   const [transactionAmount, setTransactionAmount] = useState("0");
+  const queryClient = useQueryClient();
 
   const { data: user } = useQuery({
     queryKey: ["getMyProfile"],
@@ -15,11 +17,23 @@ const Account = () => {
     mutationFn: () => deposit(transactionAmount),
     onSuccess: () => {
       alert("Transaction is successful");
+      queryClient.invalidateQueries();
     },
     onError: () => {
       alert("error");
     },
   });
+
+  // const handleTransaction = () => {
+  //   switch (transactionType){
+  //     case "deposit":
+
+  //     break;
+  //     case "withdraw":
+
+  //     break;
+  //   }
+  // }
 
   const handleAmountInput = (e) => {
     setTransactionAmount(e.target.value);
