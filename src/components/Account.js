@@ -1,12 +1,40 @@
-import React from "react";
-
+import React, { useState } from "react";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { deposit, getMyProfile } from "../API/auth";
 const Account = () => {
+  const [transactionType, setTransactionType] = useState("deposit");
+  const [transactionAmount, setTransactionAmount] = useState("0");
+
+  const { data: user } = useQuery({
+    queryKey: ["getMyProfile"],
+    queryFn: () => getMyProfile(),
+  });
+
+  const { mutate } = useMutation({
+    mutationKey: ["depositAmount"],
+    mutationFn: () => deposit(transactionAmount),
+    onSuccess: () => {
+      alert("Transaction is successful");
+    },
+    onError: () => {
+      alert("error");
+    },
+  });
+
+  const handleAmountInput = (e) => {
+    setTransactionAmount(e.target.value);
+  };
+
+  // console.log(user);
+  // console.log(user.balance);
+  // console.log(user.username);
+
   return (
     <>
       <div className="flex flex-col items-center justify-center h-[100vh] gap-20 font-serif">
         <div className="flex flex-col items-center border border-dashed border-gray-400 p-16 rounded-2xl">
           <h1 className="text-lg">Your balance:</h1>
-          <h3 className="text-3xl">30,000.00</h3>
+          <h3 className="text-3xl">{user.balance}</h3>
         </div>
         <div>
           <fieldset className="border border-dashed border-gray-400 p-10 rounded-2xl font-serif">
@@ -20,7 +48,8 @@ const Account = () => {
                     id="deposit"
                     name="transaction"
                     value="deposit"
-                    checked
+                    checked={transactionType === "deposit"}
+                    onClick={() => setTransactionType("deposit")}
                   />
                   <label for="deposit">Deposit</label>
                 </div>
@@ -30,6 +59,8 @@ const Account = () => {
                     id="withdraw"
                     name="transaction"
                     value="withdraw"
+                    checked={transactionType === "withdraw"}
+                    onClick={() => setTransactionType("withdraw")}
                   />
                   <label for="withdraw">Withdraw</label>
                 </div>
@@ -38,12 +69,14 @@ const Account = () => {
                 <input
                   className="border border-black-100  rounded-sm "
                   placeholder="Enter the amount ..."
+                  onChange={handleAmountInput}
                 />
               </div>
               <div>
                 <button
                   className="w-full rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2"
                   type="button"
+                  onClick={mutate}
                 >
                   Submit
                 </button>

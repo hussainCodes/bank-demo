@@ -52,4 +52,13 @@ const getMyTransactions = async ()=>{
     const {data} = await instance.get("/mini-project/api/transactions/my")
     return data;
 }
-export { getUserById, registerUser, loginUser, getAllUsers, getMyProfile,transfer , getMyTransactions};
+const deposit = async (amount) => {
+    const { data } = await instance.put(
+      "/mini-project/api/transactions/deposit",
+      {
+        amount: amount,
+      }
+    );
+    return data;
+  };
+export { getUserById, registerUser, loginUser, getAllUsers, getMyProfile,transfer , getMyTransactions,deposit};
