@@ -84,7 +84,7 @@ const transactionsList = transactions?.filter((transaction)=>{
             
           </div>
         </fieldset>
-        <div className="flex justify-center">
+        <div className="flex justify-center ">
           <input type="radio" id="date" name="filter" value="date" />
           <label for="date">By Date:</label>
 
@@ -92,19 +92,19 @@ const transactionsList = transactions?.filter((transaction)=>{
             type="date"
             id="start"
             name="trip-start"
-            value="2018-07-22"
+            // value="2018-07-22"
             min="2000-01-01"
             max="2030-12-31"
-            disabled
+            // disabled
           />
           <input
             type="date"
             id="start"
             name="trip-start"
-            value="2018-07-22"
+            // value="2018-07-22"
             min="2000-01-01"
             max="2030-12-31"
-            disabled
+            // disabled
           />
         </div>
         <div className="flex flex-col items-center gap-10 mt-10">
