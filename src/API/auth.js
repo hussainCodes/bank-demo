@@ -72,6 +72,14 @@ const withdraw = async (amount) => {
   );
   return data;
 };
+
+const updateMyProfile = async (image) => {
+  const { data } = await instance.put("/mini-project/api/auth/profile", {
+    image: image,
+  });
+  return data;
+};
+
 export {
   getUserById,
   registerUser,
@@ -82,4 +90,5 @@ export {
   getMyTransactions,
   deposit,
   withdraw,
+  updateMyProfile,
 };
