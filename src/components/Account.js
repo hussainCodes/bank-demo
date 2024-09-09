@@ -12,8 +12,6 @@ const Account = () => {
     queryFn: () => getMyProfile(),
   });
 
-  const [amount, setAmount] = useState(user.balance);
-
   const { mutate: depositAmount } = useMutation({
     mutationKey: ["depositAmount"],
     mutationFn: () => deposit(transactionAmount),
@@ -60,7 +58,7 @@ const Account = () => {
       <div className="flex flex-col items-center justify-center h-[100vh] gap-20 font-serif">
         <div className="flex flex-col items-center border border-dashed border-gray-400 p-16 rounded-2xl">
           <h1 className="text-lg">Your balance:</h1>
-          <h3 className="text-3xl">{user.balance}</h3>
+          <h3 className="text-3xl">{user?.balance}</h3>
         </div>
         <div>
           <fieldset className="border border-dashed border-gray-400 p-10 rounded-2xl font-serif">
