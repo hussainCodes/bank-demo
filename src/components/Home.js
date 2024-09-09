@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import HomeButton from "./HomeButton";
+import UserContext from "../Context/UserContext";
+import { Navigate } from "react-router-dom";
 
 const Home = () => {
+  const [user, setUser] = useContext(UserContext);
+  if (!user) {
+    return <Navigate to={"/"} />;
+  }
   return (
     <>
       <div className="flex flex-col gap-5 mt-5 items-center">

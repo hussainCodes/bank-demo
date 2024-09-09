@@ -6,17 +6,17 @@ import UserContext from "../Context/UserContext";
 const Login = () => {
   const [userInfo, setUserInfo] = useState({});
   const navigate = useNavigate();
-  const [user,setUser ]= useContext(UserContext);
+  const [user, setUser] = useContext(UserContext);
   const handleChange = (e) => {
     setUserInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const { mutate } = useMutation({
     mutationKey: ["loginUser"],
     mutationFn: () => loginUser(userInfo),
-    onSuccess:()=>{
-      navigate("/")
+    onSuccess: () => {
+      navigate("/Home");
       setUser(true);
-    }
+    },
   });
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,18 +25,18 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-blue-300 justify-center flex items-center h-[100vh]">
+    <div className="bg-white justify-center flex mt-10">
       <div className="border p-5 rounded-xl bg-white shadow-2xl">
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col gap-2 ">
-            <h1>Login</h1>
+            <h1 className="text-lg font-semibold">Login:</h1>
             <div>
               <label>Username: </label>
               <input
                 id="username"
                 type="name"
                 name="username"
-                className=""
+                className="border rounded-sm"
                 onChange={handleChange}
                 required
               />
@@ -48,16 +48,19 @@ const Login = () => {
                 type="password"
                 name="password"
                 onChange={handleChange}
-                className=""
+                className="border rounded"
                 required
               />
             </div>
 
-            <button type="submit" className="">
+            <button type="submit" className="bg-green-500 rounded-md">
               Login
             </button>
           </div>
         </form>
+        <Link to={"/register"} className="text-red-500">
+          Not user? register >>>
+        </Link>
       </div>
     </div>
   );
