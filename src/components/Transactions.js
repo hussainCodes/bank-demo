@@ -39,6 +39,8 @@ const Transactions = () => {
   // ];
 //   const [query, setQuery] = useState("")
   const [type, setType] = useState("")
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   
   const typeSelector = (e)=>{
     console.log(e.target.value)
@@ -53,6 +55,7 @@ const Transactions = () => {
 //   const transactionsList = transactions?.map((transaction) => (
 //     <Transaction transaction={transaction} />
 //   ));
+
 const transactionsList = transactions?.filter((transaction)=>{
     if(transaction.type.toLowerCase().includes(type.toLowerCase())){
       return true
@@ -91,20 +94,22 @@ const transactionsList = transactions?.filter((transaction)=>{
           <input
             type="date"
             id="start"
-            name="trip-start"
-            // value="2018-07-22"
+            name="start-date"
+            value={startDate}
             min="2000-01-01"
             max="2030-12-31"
             // disabled
+            onChange={(e)=>setStartDate(e.target.value)}
           />
           <input
             type="date"
-            id="start"
-            name="trip-start"
-            // value="2018-07-22"
+            id="end"
+            name="end-date"
+            value={endDate}
             min="2000-01-01"
             max="2030-12-31"
             // disabled
+            onChange={(e)=>setEndDate(e.target.value)}
           />
         </div>
         <div className="flex flex-col items-center gap-10 mt-10">
