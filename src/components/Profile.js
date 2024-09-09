@@ -17,7 +17,7 @@ const Profile = () => {
 
   const onPhotoChange = (e) => {
     if (e.target.files && e.target.files[0]) {
-      setPhoto(URL.createObjectURL(e.target.files[0]));
+      setPhoto(e.target.files[0]);
     }
   };
 

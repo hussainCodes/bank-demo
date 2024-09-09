@@ -74,9 +74,12 @@ const withdraw = async (amount) => {
 };
 
 const updateMyProfile = async (image) => {
-  const { data } = await instance.put("/mini-project/api/auth/profile", {
-    image: image,
-  });
+  const formData = new FormData();
+  formData.append("image", image);
+  const { data } = await instance.put(
+    "/mini-project/api/auth/profile",
+    formData
+  );
   return data;
 };
 
