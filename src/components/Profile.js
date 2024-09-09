@@ -24,8 +24,8 @@ const Profile = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center h-[100vh]">
-        <div className="flex justify-center items-center mt-20 w-80 rounded-2xl border  border-solid drop-shadow-lg">
+      <div className="flex justify-center mt-10">
+        <div className="flex  w-80 rounded-2xl border  border-dotted border-gray-400 drop-shadow-lg">
           <div className="w-[75] h-80">
             <div>
               <img
@@ -37,8 +37,8 @@ const Profile = () => {
               />
             </div>
             <div className="flex flex-col items-center gap-1">
-              <h1>{user?.username}</h1>
-              <h3>{user?.balance}</h3>
+              <h1>Username: {user?.username}</h1>
+              <h3>Balance: {user?.balance}</h3>
               <input type="file" accept="image/*" />
               <button className="border rounded bg-green-400 pr-10 pl-10">
                 Save
