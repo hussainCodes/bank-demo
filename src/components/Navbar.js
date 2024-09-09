@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import UserContext from "../Context/UserContext";
 import { deleteToken } from "../API/storage";
+import logo from "../assets/media/banklogo.jpg";
 const Navbar = () => {
   const [user, setUser] = useContext(UserContext);
   const handleLogout = () => {
@@ -11,13 +12,14 @@ const Navbar = () => {
   return (
     <div className="bg-gray-500 ">
       <div className="flex bg-green-500 justify-between p-6">
-        <NavLink to={"/Home"} className="font-bold ">
-          Bank
+        <NavLink to={"/Home"} className="flex text-white font-bold ">
+          <img className="w-10" src={logo} alt="logo" />
+          Eco Bank
         </NavLink>
         {user ? (
           <>
             <Link
-              className="border pl-3 pr-3 pb-1 drop-shadow-xl text-white rounded-md "
+              className="border pl-3 pr-3  drop-shadow-xl text-white rounded-md "
               to={"/"}
               onClick={handleLogout}
             >
