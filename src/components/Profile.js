@@ -13,10 +13,10 @@ const Profile = () => {
   //const [userInfo, setUserInfo] = useState({});
 
   const { data: user } = useQuery({
-    queryKey: "getMyProfile",
+    queryKey: ["getMyProfile"],
     queryFn: () => getMyProfile(),
   });
-  console.log(user);
+  console.log("User in Profile", user);
 
   // if (!user) {
   //   return <Navigate to={"/login"} />;
@@ -31,14 +31,14 @@ const Profile = () => {
               <img
                 className="rounded-2xl"
                 src={
-                  "https://react-bank-project.eapi.joincoded.com/" + user.image
+                  "https://react-bank-project.eapi.joincoded.com/" + user?.image
                 }
                 alt="profile picture"
               />
             </div>
             <div className="flex flex-col items-center gap-1">
-              <h1>{user.username}</h1>
-              <h3>{user.balance}</h3>
+              <h1>{user?.username}</h1>
+              <h3>{user?.balance}</h3>
               <input type="file" accept="image/*" />
               <button className="border rounded bg-green-400 pr-10 pl-10">
                 Save
