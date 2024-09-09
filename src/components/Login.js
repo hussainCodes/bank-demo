@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { loginUser } from "../API/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import UserContext from "../Context/UserContext";
 const Login = () => {
   const [userInfo, setUserInfo] = useState({});
@@ -23,6 +23,10 @@ const Login = () => {
     mutate();
     console.log(userInfo);
   };
+
+  if (user) {
+    return <Navigate to={"/Home"} />;
+  }
 
   return (
     <div className="bg-white justify-center flex mt-10">
@@ -59,7 +63,7 @@ const Login = () => {
           </div>
         </form>
         <Link to={"/register"} className="text-red-500">
-          Not user? register 
+          Not user? register
         </Link>
       </div>
     </div>
