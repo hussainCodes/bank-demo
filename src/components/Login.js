@@ -59,7 +59,7 @@ const Login = () => {
           </div>
         </form>
         <Link to={"/register"} className="text-red-500">
-          Not user? register >>>
+          Not user? register 
         </Link>
       </div>
     </div>

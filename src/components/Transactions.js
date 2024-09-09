@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Transaction from "./Transaction";
 import { getMyTransactions } from "../API/auth";
 import { isLabelWithInternallyDisabledControl } from "@testing-library/user-event/dist/utils";
@@ -37,17 +37,26 @@ const Transactions = () => {
   //     type: "withdraw",
   //   },
   // ];
-
+//   const [query, setQuery] = useState("")
+  const [type, setType] = useState("")
+  
+  const typeSelector = (e)=>{
+    console.log(e.target.value)
+    setType(e.target.value);
+  }
+  
   const { data: transactions } = useQuery({
     queryKey: ["getMyTransactions"],
     queryFn: getMyTransactions,
   });
 
-  const transactionsList = transactions?.map((transaction) => (
-    <Transaction transaction={transaction} />
-  ));
-
-  console.log(transactions[0].createdAt);
+//   const transactionsList = transactions?.map((transaction) => (
+//     <Transaction transaction={transaction} />
+//   ));
+const transactionsList = transactions?.filter((transaction)=>{
+    if(transaction.type.toLowerCase().includes(type.toLowerCase())){
+      return true
+    }}).map((transaction) => <Transaction transaction={transaction} key={transaction.id} />);
 
   return (
     <>
@@ -55,11 +64,12 @@ const Transactions = () => {
         <fieldset className="flex justify-center gap-3">
           <div>Filter:</div>
           <div>
-            <input type="radio" id="all" name="filter" value="all" />
+            
+            <input type="radio" id="all" name="filter" value="" onClick={typeSelector}/>
             <label for="all">All</label>
           </div>
           <div>
-            <input type="radio" id="deposits" name="filter" value="deposits" />
+            <input type="radio" id="deposits" name="filter" value="deposit" onClick={typeSelector}/>
             <label for="deposits">Deposits</label>
           </div>
           <div>
@@ -67,9 +77,11 @@ const Transactions = () => {
               type="radio"
               id="withdraws"
               name="filter"
-              value="withdraws"
+              value="withdraw"
+              onClick={typeSelector}
             />
             <label for="withdraws">Withdraws</label>
+            
           </div>
         </fieldset>
         <div className="flex justify-center">
