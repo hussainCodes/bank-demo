@@ -16,7 +16,11 @@ const Navbar = () => {
         </NavLink>
         {user ? (
           <>
-            <Link to={"/"} onClick={handleLogout}>
+            <Link
+              className="border pl-3 pr-3 pb-1 drop-shadow-xl text-white rounded-md "
+              to={"/"}
+              onClick={handleLogout}
+            >
               Logout
             </Link>{" "}
           </>
