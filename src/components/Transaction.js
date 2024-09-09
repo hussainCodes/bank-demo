@@ -12,7 +12,7 @@ const Transaction = ({ transaction }) => {
             <div>{plusOrMinus}</div>
             <div>{transaction.amount}</div>
           </div>
-          <div>{transaction.date}</div>
+          <div>{transaction.createdAt.slice(0, 10)}</div>
           <div>{transaction.type}</div>
         </div>
       </>
@@ -26,7 +26,7 @@ const Transaction = ({ transaction }) => {
           <div>{plusOrMinus}</div>
           <div>{transaction.amount}</div>
         </div>
-        <div>{transaction.date}</div>
+        <div>{transaction.createdAt.slice(0, 10)}</div>
         <div>{transaction.type}</div>
       </div>
     </>

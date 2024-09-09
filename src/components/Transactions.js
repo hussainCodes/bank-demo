@@ -2,49 +2,52 @@ import React from "react";
 import Transaction from "./Transaction";
 import { getMyTransactions } from "../API/auth";
 import { isLabelWithInternallyDisabledControl } from "@testing-library/user-event/dist/utils";
+import { useQuery } from "@tanstack/react-query";
 
 const Transactions = () => {
-  const transactions = [
-    {
-      amount: 200,
-      date: "10-7-1878",
-      type: "withdraw",
-    },
-    {
-      amount: 548,
-      date: "2-9-2055",
-      type: "deposit",
-    },
-    {
-      amount: 120,
-      date: "1-12-2030",
-      type: "withdraw",
-    },
-    {
-      amount: 200,
-      date: "10-7-1878",
-      type: "withdraw",
-    },
-    {
-      amount: 548,
-      date: "2-9-2055",
-      type: "deposit",
-    },
-    {
-      amount: 120,
-      date: "1-12-2030",
-      type: "withdraw",
-    },
-  ];
+  // const transactions = [
+  //   {
+  //     amount: 200,
+  //     date: "10-7-1878",
+  //     type: "withdraw",
+  //   },
+  //   {
+  //     amount: 548,
+  //     date: "2-9-2055",
+  //     type: "deposit",
+  //   },
+  //   {
+  //     amount: 120,
+  //     date: "1-12-2030",
+  //     type: "withdraw",
+  //   },
+  //   {
+  //     amount: 200,
+  //     date: "10-7-1878",
+  //     type: "withdraw",
+  //   },
+  //   {
+  //     amount: 548,
+  //     date: "2-9-2055",
+  //     type: "deposit",
+  //   },
+  //   {
+  //     amount: 120,
+  //     date: "1-12-2030",
+  //     type: "withdraw",
+  //   },
+  // ];
 
-  //   const {data: transactions} = useQuery({
-  //     queryKey: ["getMyTransactions"],
-  //     queryFn: getMyTransactions
-  // });
+  const { data: transactions } = useQuery({
+    queryKey: ["getMyTransactions"],
+    queryFn: getMyTransactions,
+  });
 
-  const transactionsList = transactions.map((transaction) => (
+  const transactionsList = transactions?.map((transaction) => (
     <Transaction transaction={transaction} />
   ));
+
+  console.log(transactions[0].createdAt);
 
   return (
     <>
