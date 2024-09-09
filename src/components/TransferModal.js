@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { transfer } from "../API/auth";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-const TransferModal = ({ showModal, setShowModal,username }) => {
+const TransferModal = ({ showModal, setShowModal, username }) => {
   const [amount, setAmount] = useState(0);
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationKey: ["transfer"],
-    mutationFn: () => transfer(amount,username),
+    mutationFn: () => transfer(amount, username),
     onSuccess: () => {
       setShowModal(false);
       queryClient.invalidateQueries(["getAllUsers"]);
@@ -15,10 +15,10 @@ const TransferModal = ({ showModal, setShowModal,username }) => {
       alert("Error!");
     },
   });
-  const handleSubmit = (e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    mutate()
-  }
+    mutate();
+  };
   if (!showModal) return null;
   return (
     // <div className="flex-row bg-slate-700 h-28 w-28 shadow-2xl self-center justify-center items-center">
@@ -31,9 +31,11 @@ const TransferModal = ({ showModal, setShowModal,username }) => {
     //   <button onClick={() => setShowModal(false)}>close</button>
     // </div>
 
-    <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-10">
-      <div className="bg-gray-800 rounded-md shadow-md w-full max-w-md p-6 overflow-scroll max-h-[70%]">
-        <h2 className="text-3xl text-white font-semibold mb-6">Transfer Amount</h2>
+    <div className="fixed inset-0 bg-white bg-opacity-75 flex items-center justify-center z-10">
+      <div className="bg-white rounded-md shadow-md w-full max-w-md p-6 max-h-[70%]">
+        <h2 className="text-3xl text-green-500 font-semibold mb-6">
+          Transfer Amount
+        </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
@@ -54,7 +56,7 @@ const TransferModal = ({ showModal, setShowModal,username }) => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+              className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors"
             >
               Transfer
             </button>
