@@ -50,11 +50,11 @@ const Profile = () => {
   return (
     <>
       <div className="flex justify-center mt-10">
-        <div className="flex  w-80 rounded-2xl border  border-dotted border-gray-400 drop-shadow-lg">
-          <div className="w-[75] h-80">
+        <div className="flex   w-80 rounded-2xl border  border-dotted border-gray-400 drop-shadow-lg">
+          <div className=" flex flex-col items-center w-[75] h-80">
             <div>
               <img
-                className="rounded-2xl"
+                className="rounded-2xl w-48 h-48"
                 src={
                   "https://react-bank-project.eapi.joincoded.com/" + user?.image
                 }
