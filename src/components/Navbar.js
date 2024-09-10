@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import UserContext from "../Context/UserContext";
 import { deleteToken } from "../API/storage";
-import logo from "../assets/media/banklogo.png"
+import logo from "../assets/media/banklogo.png";
 const Navbar = () => {
   const [user, setUser] = useContext(UserContext);
   const handleLogout = () => {
@@ -12,8 +12,15 @@ const Navbar = () => {
   return (
     <div className="bg-gray-500 items-center justify-items-center">
       <div className="flex bg-green-500 justify-between p-6">
-        <NavLink to={"/Home"} className="flex-col justify-items-center items-center align-top text-white font-bold ">
-          <img className="w-12 bg-white rounded-full p-0.5" src={logo} alt="logo" />
+        <NavLink
+          to={"/Home"}
+          className="flex-col  justify-items-center items-center align-top text-white font-bold "
+        >
+          <img
+            className="w-12 bg-white rounded-full p-0.5"
+            src={logo}
+            alt="logo"
+          />
           Eco Bank
         </NavLink>
         {user ? (
