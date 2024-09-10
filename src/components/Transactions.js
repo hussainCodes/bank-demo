@@ -22,8 +22,8 @@ const Transactions = () => {
     const start = startDate ? new Date(startDate) : null;
     const end = endDate ? new Date(endDate) : null;
 
-    if (start && transactionDate < start) return false;
-    if (end && transactionDate > end) return false;
+    if (start && transactionDate <= start) return false;
+    if (end && transactionDate >= end) return false;
 
     return true;
   };
