@@ -35,6 +35,8 @@ return formatedDate.slice(0,formatedDate.indexOf(","))
          toNormalize(endDate)>=toNormalize(transaction.createdAt)){
             return true
         }
+    }else{
+      return true
     }
 
     // return true;
