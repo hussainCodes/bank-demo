@@ -30,9 +30,7 @@ const Transactions = () => {
 
   const transactionsList = transactions
     ?.filter((transaction) => {
-      // Filter by type
       const typeMatches = type ? transaction.type.toLowerCase().includes(type.toLowerCase()) : true;
-      // Filter by date
       const dateMatches = filterByDate(transaction);
 
       return typeMatches && dateMatches;
