@@ -30,12 +30,17 @@ const Transactions = () => {
 
   const transactionsList = transactions
     ?.filter((transaction) => {
-      const typeMatches = type ? transaction.type.toLowerCase().includes(type.toLowerCase()) : true;
+      const typeMatches = type
+        ? transaction.type.toLowerCase().includes(type.toLowerCase())
+        : true;
       const dateMatches = filterByDate(transaction);
 
       return typeMatches && dateMatches;
     })
-    .map((transaction) => <Transaction transaction={transaction} key={transaction.id} />);
+    .reverse()
+    .map((transaction) => (
+      <Transaction transaction={transaction} key={transaction.id} />
+    ));
 
   return (
     <>
@@ -43,11 +48,23 @@ const Transactions = () => {
         <fieldset className="flex justify-center gap-3">
           <div>Filter:</div>
           <div>
-            <input type="radio" id="all" name="filter" value="" onClick={typeSelector} />
+            <input
+              type="radio"
+              id="all"
+              name="filter"
+              value=""
+              onClick={typeSelector}
+            />
             <label htmlFor="all">All</label>
           </div>
           <div>
-            <input type="radio" id="deposits" name="filter" value="deposit" onClick={typeSelector} />
+            <input
+              type="radio"
+              id="deposits"
+              name="filter"
+              value="deposit"
+              onClick={typeSelector}
+            />
             <label htmlFor="deposits">Deposits</label>
           </div>
           <div>
@@ -62,8 +79,7 @@ const Transactions = () => {
           </div>
         </fieldset>
         <div className="flex justify-center gap-3 ">
-          
-          <label htmlFor="date">By Date:  </label>
+          <label htmlFor="date">By Date: </label>
 
           <input
             type="date"
