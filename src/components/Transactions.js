@@ -16,16 +16,28 @@ const Transactions = () => {
     queryKey: ["getMyTransactions"],
     queryFn: getMyTransactions,
   });
-
+const toNormalize= (time)=>{
+const date = new Date(time);
+const formatedDate = date.toLocaleString("en-US")
+return formatedDate.slice(0,formatedDate.indexOf(","))
+}
   const filterByDate = (transaction) => {
-    const transactionDate = new Date(transaction.createdAt);
-    const start = startDate ? new Date(startDate) : null;
-    const end = endDate ? new Date(endDate) : null;
+    // let transactionDate = toNormalize(transaction.createdAt);
+    // let start = startDate ? toNormalize(startDate) : null;
+   
+    // let end = endDate ? toNormalize(endDate): null;
+   
 
-    if (start && transactionDate <= start) return false;
-    if (end && transactionDate >= end) return false;
+    // if (start && transactionDate <= start) return false;    
+    // if (end && transactionDate >= end) return false;
+    if(startDate!=="" && endDate !==""){
+        if(toNormalize(startDate)<=toNormalize(transaction.createdAt) &&
+         toNormalize(endDate)>=toNormalize(transaction.createdAt)){
+            return true
+        }
+    }
 
-    return true;
+    // return true;
   };
 
   const transactionsList = transactions
