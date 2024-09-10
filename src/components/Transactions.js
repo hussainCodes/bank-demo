@@ -18,7 +18,7 @@ const Transactions = () => {
   });
 
   const filterByDate = (transaction) => {
-    const transactionDate = new Date(transaction.date);
+    const transactionDate = new Date(transaction.createdAt);
     const start = startDate ? new Date(startDate) : null;
     const end = endDate ? new Date(endDate) : null;
 
