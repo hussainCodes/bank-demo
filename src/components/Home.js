@@ -4,7 +4,7 @@ import UserContext from "../Context/UserContext";
 import { Navigate } from "react-router-dom";
 
 const Home = () => {
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
   if (!user) {
     return <Navigate to={"/"} />;
   }
