@@ -1,12 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { getMyProfile, updateMyProfile } from "../API/auth";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { getToken } from "../API/storage";
-import UserContext from "../Context/UserContext";
-import { useContext } from "react";
-import instance from "../API";
 import pic from "../assets/media/profile-pic-placeholder.png";
 const Profile = () => {
   // const [user, setUser] = useContext(UserContext);
@@ -58,7 +54,7 @@ const Profile = () => {
                 src={
                   "https://react-bank-project.eapi.joincoded.com/" + user?.image
                 }
-                alt="profile picture"
+                alt="profile"
               />
             </div>
             <div className="flex flex-col items-center gap-1">
